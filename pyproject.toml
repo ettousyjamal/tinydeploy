@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tinydeploy"
+version = "1.0.0"
+description = "Constraint-based TinyML model selection, target build hand-off and OTA update simulation for MCU fleets"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "Jamal ET-TOUSY", email = "j.ettousy.ced@uca.ac.ma" },
+]
+keywords = ["tinyml", "microcontroller", "quantization", "pruning", "ota", "iot", "tflite-micro"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: System :: Embedded Systems",
+]
+dependencies = []
+
+[project.optional-dependencies]
+tensorflow = ["tensorflow>=2.15", "numpy"]
+notebook = ["jupyter", "matplotlib", "pandas"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+tinydeploy = "tinydeploy.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["tensorflow: tests that need TensorFlow (skipped when it is not installed)"]
